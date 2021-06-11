@@ -1,9 +1,0 @@
-Resource Type: Ivwop
-Resource Class: Keschel Extrusive Ore
-Cold Resistance: 531
-Decay Resistance: 601
-Heat Resistance: 670
-Malleability: 309
-Overall quality: 172
-Shock Resistance: 700
-Unit Toughness: 678
