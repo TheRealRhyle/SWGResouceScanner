@@ -6,21 +6,21 @@ to GalaxyHarvester.
 Prepwork:
 	Ensure connection to GalaxyHarvester.
 	https://github.com/pwillworth/galaxyharvester/wiki/Web-Services
-	Pull auth token, store authToken locally. This is needed for Phase II.
+	Pull auth token, store authToken locally. This is needed for Phase II. - Done
 	
 Phase I:
 	1: Get data from the screen. - Done
 	2: Save to a text file. - Done
 	3: Parse data. - Done
 	4: Validate data. - Done
-	5: Format output string for submitting to GH.
-	6: post resource manually.
+	5: Format output string for submitting to GH. -Done.
+	6: post resource manually. - Done
 
 Phase II:
-	1: Create a loop w/ an interval.
-	2: Get data from the screen.
-	3: Parse and Validate data.
-	4: Format for post.
+	1: Create a loop w/ an interval. - On hold.
+	2: Get data from the screen. - Done
+	3: Parse and Validate data. - Done
+	4: Format for post. - Done
 	5: Post to Galaxy Harvester
 
 
