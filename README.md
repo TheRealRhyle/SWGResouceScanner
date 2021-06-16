@@ -11,11 +11,12 @@ Data is also formatted as a form response and submitted via the postResources.py
 ## Authors
 
 - [@TheRealRhyle](https://www.github.com/TheRealRhyle)
-[![Social](https://img.shields.io/github/followers/TheRealRhyle?style=social)]
+- 
+
   
 
 
-
+[![Social](https://img.shields.io/github/followers/TheRealRhyle?style=social)]
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
 
