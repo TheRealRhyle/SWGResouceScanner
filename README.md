@@ -31,6 +31,6 @@ Data is also formatted as a form response and submitted via the postResources.py
   
 [![Social](https://img.shields.io/github/followers/TheRealRhyle?style=flat)](https://github.com/TheRealRhyle)
 [![Twitch](https://img.shields.io/twitch/status/rhyle_?style=flat)](https://twitch.tv/rhyle_)
-[![Twitter](https://img.shields.io/twitter/follow/rhyle_?style=plastic)](https://twitter.tv/rhyle_)
+[![Twitter](https://img.shields.io/twitter/follow/rhyle_?style=plastic)](https://twitter.com/rhyle_)
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
