@@ -4,8 +4,8 @@ class Resource:
     def __init__(self, name, type):
         self.resName = name
         self.resType = type
-        self.forceOp = 'verify'
-        self.galaxy = '115'
+        # self.forceOp = 'verify'
+        # self.galaxy = '115'
 
 def class_to_json(resource):
     return json.dumps(resource.__dict__)

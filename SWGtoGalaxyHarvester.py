@@ -23,6 +23,6 @@ for k,v in test_dict.items():
 print(submit_string)
 
 
-r = auth.add_resource(login, submit_string)
-print(r.status_code)
-print(r.content)
+# r = auth.add_resource(login, submit_string)
+# print(r.status_code)
+# print(r.content)

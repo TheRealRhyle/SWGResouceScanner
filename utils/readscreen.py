@@ -1,9 +1,12 @@
+import re
+from sre_constants import RANGE_UNI_IGNORE
 import cv2
 import numpy as np
 from PIL import ImageGrab
 import pytesseract
 from datetime import datetime, timedelta
 import utils.parsedata as par
+import json
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 start_time = datetime.now()
@@ -24,15 +27,15 @@ def parse_validate_write(image):
     resource = pytesseract.image_to_string(image).replace('\n\n','\n')
     resource_line = resource.split('\n')
 
-
-    for line in range(4,len(resource_line)-2):
-        x= ""
+    text_out = []
+    for line in range(4,len(resource_line)-1):
+        
         k,v = resource_line[line].strip().split(":" , 1)
         if k == 'Resource Class':
             v=v.strip().split(" ")
             v=v[::-1]
             v='_'.join(v).lower()
-            
+        text_out.append(resource_line[line] + '\n')
         dict1[k] = v.strip().lower()
 
     sample = par.Resource(dict1['Resource Type'], dict1['Resource Class'])
@@ -60,6 +63,9 @@ def parse_validate_write(image):
             sample.UT=v
         if k == 'Entangle Resistance':
             sample.ER=v
+    resname = sample.resName
+    with open(f'outdata\{resname}.txt', 'w') as fi:
+        fi.writelines(text_out)
 
     return sample
 
@@ -67,10 +73,12 @@ def parse_validate_write(image):
 if __name__=="__main__":
     image = get_resource_info()
     resource_sample = parse_validate_write(image)
+
     sample_json = par.class_to_json(resource_sample)
     
     with open('outdata\sample.json','w') as fi:
-        fi.write(sample_json)
+        # fi.write(sample_json)
+        fi.write(json.dumps(json.loads(sample_json), indent=4, sort_keys=False))
 
     # auth.verify_resource(sample_json)    
     
