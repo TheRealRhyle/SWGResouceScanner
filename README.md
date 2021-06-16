@@ -11,7 +11,7 @@ Data is also formatted as a form response and submitted via the postResources.py
 ## Authors
 
 - [@TheRealRhyle](https://www.github.com/TheRealRhyle)
-[![Social](https://img.shields.io/github/followers/TheRealRhyle?style=social)](https://img.shields.io/github/followers/TheRealRhyle?style=social)
+[![Social]](https://img.shields.io/github/followers/TheRealRhyle?style=social)
   
 
 
