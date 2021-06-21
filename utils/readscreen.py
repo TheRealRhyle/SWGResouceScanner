@@ -1,5 +1,3 @@
-import re
-from sre_constants import RANGE_UNI_IGNORE
 import cv2
 import numpy as np
 from PIL import ImageGrab
