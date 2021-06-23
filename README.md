@@ -11,9 +11,7 @@ Data is also formatted as a form response and submitted via the postResources.py
 ## Authors
 
 - [@TheRealRhyle](https://www.github.com/TheRealRhyle)
-- 
 
-  
 # SWGResouceScanner
 
 At this time it seems that Galaxy Harvester will not accept the submit data in headers or in a data package json.
