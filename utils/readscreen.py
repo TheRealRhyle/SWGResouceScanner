@@ -28,13 +28,16 @@ def parse_validate_write(image):
     text_out = []
     for line in range(4,len(resource_line)-1):
         
-        k,v = resource_line[line].strip().split(":" , 1)
-        if k == 'Resource Class':
-            v=v.strip().split(" ")
-            v=v[::-1]
-            v='_'.join(v).lower()
-        text_out.append(resource_line[line] + '\n')
-        dict1[k] = v.strip().lower()
+        if ":" not in resource_line[line]:
+            resource_line[line-1] = resource_line[line-1] + " " + resource_line[line] 
+        else:
+            k,v = resource_line[line].strip().split(":" , 1)
+            if k == 'Resource Class':
+                v=v.strip().split(" ")
+                v=v[::-1]
+                v='_'.join(v).lower()
+            text_out.append(resource_line[line] + '\n')
+            dict1[k] = v.strip().lower()
 
     sample = par.Resource(dict1['Resource Type'], dict1['Resource Class'])
     

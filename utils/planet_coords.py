@@ -1,28 +1,21 @@
-# Point(x=1755, y=100)
-# Point(x=1919, y=180)
-
 import re
 import cv2
 import numpy as np
 from PIL import ImageGrab
 import pytesseract
 from time import sleep
-# from datetime import datetime, timedelta
-# import utils.parsedata as par
-# import json
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-# start_time = datetime.now()
 
 def get_planet():
     capture_examine = ImageGrab.grab(bbox=(1806,106,1866,126))
     image = np.array(capture_examine)
-    # image_normalized = np.zeros((image.shape[0], image.shape[1]))
-    # image = cv2.normalize(image, image_normalized, 10, 255, cv2.NORM_MINMAX)
-    image = cv2.threshold(image, 200, 255, cv2.THRESH_BINARY)[1]
+    image_normalized = np.zeros((image.shape[0], image.shape[1]))
+    image = cv2.normalize(image, image_normalized, 150, 255, cv2.NORM_MINMAX)
+    image = cv2.resize(image, (400,100))
     image = cv2.GaussianBlur(image, (1,1), 1)
-    image = cv2.resize(image, (800,400))
     image = cv2.medianBlur(image, 5)
+    image = cv2.threshold(image, 225, 255, cv2.THRESH_BINARY)[1]
     return image
 
 def get_coords():
@@ -98,11 +91,13 @@ if __name__=="__main__":
     while True:
         planet_name = get_planet()
         c_x, c_y = get_coords()
-
+        cv2.imshow("",planet_name)
         planet_name = pytesseract.image_to_string(planet_name).replace('\n','').replace("\x0c","")
         outx = pytesseract.image_to_string(c_x).replace('\n','').replace("\x0c","")
         outy = pytesseract.image_to_string(c_y).replace('\n','').replace("\x0c","")
         
+        if planet_name == "Yavin 4":
+            planet_name="yavin4"
 
         print(f'Waypoint: /wp {planet_name} {outx} {outy}')
         # parse_validate_write(get_planet_waypoint())
@@ -110,20 +105,3 @@ if __name__=="__main__":
             break
     
     cv2.destroyAllWindows()
-    
-    
-    # image = get_planet_waypoint()
-    
-    # resource_sample = parse_validate_write(image)
-
-    # sample_json = par.class_to_json(resource_sample)
-    
-    # with open('outdata\sample.json','w') as fi:
-    #     # fi.write(sample_json)
-    #     fi.write(json.dumps(json.loads(sample_json), indent=4, sort_keys=False))
-
-    # auth.verify_resource(sample_json)    
-    
-
-
-
