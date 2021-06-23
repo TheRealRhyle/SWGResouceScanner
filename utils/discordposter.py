@@ -1,27 +1,30 @@
 import requests
+import json
 
-webhook_url = ['https://discord.com/api/webhooks/856649563574108170/dEBqaUvgretUTdkTjPaBIUJz_tbdGh0PSFoqkYT5ujUQ6cV18umS5XTmBRjkPK148JkE']
+with open('data/hooks.json', 'r') as hooks:
+    discord_hooks = json.load(hooks)
 
+x = discord_hooks['webooks']
 
-data = {"content": '''
-Post test:
+data = {"content":'''
+<@&857276487413268542> you may delete this post as it was only made for testing purposes.
 ```
-/wp Yavin 4 609 5320
+/way Corellia -6539 -2543 79% Durabafo
 
-Resource Type: Gano
-Resource Class: Conductive Borcarbitic Coppper
-Cold Resistance: 149
-Conductivity: 183
-Decay Resistance: 894
-Heat Resistance: 208
-Malleability: 735
-Overall quality: 932
-Shock Resistance: 884
-Unit Toughness: 287
-```
-'''}
-response = requests.post(webhook_url[0], json=data)
+Resource Type: Durabafo
+Resource Class: Diatium Copper
+Cold Resistance: 394
+Conductivity: 780
+Decay Resistance: 336
+Heat Resistance: 395
+Malleability: 770
+Overall quality: 967
+Shock Resistance: 528
+Unit Toughness: 592
+```'''}
 
-print(response.status_code)
 
-print(response.content)
+for hook in x:
+    r = requests.post(hook,data=data)
+    print(r.status_code)
+    print(r.content)
