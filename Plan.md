@@ -1,15 +1,16 @@
-SwG to Galaxy Harvester
-Idea: A run-able script that will read resource data from the game 
-screen and parse it in such as way that it can be directly loaded 
-to GalaxyHarvester.  
+# SwG to Galaxy Harvester
 
-Prepwork:
-	Ensure connection to GalaxyHarvester.
-	https://github.com/pwillworth/galaxyharvester/wiki/Web-Services
-	Pull auth token, store authToken locally. This is needed for Phase II. - Done
+## Idea
+
+A run-able script that will read resource data from the game screen and parse it in such as way that it can be directly loaded to GalaxyHarvester.  
+
+### Prep work:
+
+ [ ](Ensure connection to GalaxyHarvester.)[https://github.com/pwillworth/galaxyharvester/wiki/Web-Services]
+ [ ]Pull auth token, store authToken locally. This is needed for Phase II. - Done
 	
 Phase I - Getting and Parsing:
-	1: Get data from the screen. - Done
+	[ ] Get data from the screen. - Done
 	2: Parse data. - Done
     3: Save to a text file. - Done
 	4: Validate data. - Done
