@@ -8,19 +8,19 @@ A run-able script that will read resource data from the game screen and parse it
 
  [x] [Ensure connection to GalaxyHarvester.](https://github.com/pwillworth/galaxyharvester/wiki/web-Services)<br>
  [x] Pull auth token<br>
- [x] Store authToken locally. This is needed for Phase II. - Done<br>
+ [x] Store authToken locally. This is needed for Phase II.<br>
 
 ### Phase I - Getting and Parsing:
 
-	[ ] Get data from the screen. - Done
-	2: Parse data. - Done
-    3: Save to a text file. - Done
-	4: Validate data. - Done
+ [ ] Get data from the screen.
+ [ ] Parse data.
+ [ ] Save to a text file.
+ [ ] Validate data.
 
 Phase II - Galaxy Harvester Integration:
-	1: Format output string for submitting to GH. - Done.
-    2: Post resource manually using formatted string. - Done
-	3: Post to Galaxy Harvester. - Done - Delayed.
+1: Format output string for submitting to GH..
+    2: Post resource manually using formatted string.
+3: Post to Galaxy Harvester. - Delayed.
 
 Phase III - Troubleshooting and Future planning:
     1: Planet name does not show on compass when you first log in, need to travel/switch planets. This will break utils/planet_coords
