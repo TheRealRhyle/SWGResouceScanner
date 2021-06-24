@@ -26,12 +26,12 @@ A run-able script that will read resource data from the game screen and parse it
 ### Phase III - Troubleshooting and Future planning
 
 - [ ] Planet name does not show on compass when you first log in, need to travel/switch planets. This will break utils/planet_coords
-- --> Planet name should come from chat trigger, coords can come from screen data.
-- --> 
-- [ ] Posting to Discord works if provided with an webhook.
+- --> Planet name should come from chat trigger, coords can come from screen data?
+- [x] ~~Posting to Discord works if provided with an webhook.~~
 - [ ] Need to implement some for of feedback for success/failure to post to GH.
-- [ ] Read chatlog for information and text triggers. 
-    -- C:\SWG Restoration III\profiles\rhyle\Restoration\
+- [ ] Read chatlog for information and text triggers.
+- : C:\SWG Restoration III\profiles\rhyle\Restoration\
+- This does not work as the chat log is only stored on logout, area transition, or turning off the log.
 - [ ] Debug log
 
 Phase IV - Create an EXE:
