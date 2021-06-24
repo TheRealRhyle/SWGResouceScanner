@@ -6,16 +6,16 @@ A run-able script that will read resource data from the game screen and parse it
 
 ### Prep work:
 
- [x] [Ensure connection to GalaxyHarvester.](https://github.com/pwillworth/galaxyharvester/wiki/web-Services)<br>
- [x] Pull auth token<br>
- [x] Store authToken locally. This is needed for Phase II.<br>
+- [x] [Ensure connection to GalaxyHarvester.](https://github.com/pwillworth/galaxyharvester/wiki/web-Services)<br>
+- [x] Pull auth token<br>
+- [x] Store authToken locally. This is needed for Phase II.<br>
 
 ### Phase I - Getting and Parsing:
 
- [ ] Get data from the screen.
- [ ] Parse data.
- [ ] Save to a text file.
- [ ] Validate data.
+- [ ] Get data from the screen.
+- [ ] Parse data.
+- [ ] Save to a text file.
+- [ ] Validate data.
 
 Phase II - Galaxy Harvester Integration:
 1: Format output string for submitting to GH..
