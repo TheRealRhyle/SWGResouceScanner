@@ -2,12 +2,20 @@ import requests
 import json
 
 from requests.models import Response
+from requests.sessions import session
 
 def get_auth():
+    """Calls the Galaxy harvest auth Endpoint
+
+    Returns:
+        json: the contents of data/deets.json
+        string: auth token
+    """
     with open ('data/deets.json', 'r') as deets:
         payload = json.load(deets)
     r = requests.post('http://www.galaxyharvester.net/authUser.py', data=payload )
-    return (payload, r.text.split('-')[1])
+    session_token = r.text.split('-')[1]
+    return (payload, session_token)
 
 def add_resource(head, sample_json):
     

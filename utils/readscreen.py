@@ -38,8 +38,13 @@ def parse_validate_write(image):
                 v='_'.join(v).lower()
             text_out.append(resource_line[line] + '\n')
             dict1[k] = v.strip().lower()
-
-    sample = par.Resource(dict1['Resource Type'], dict1['Resource Class'])
+    try:
+        sample = par.Resource(dict1['Resource Type'], dict1['Resource Class'])
+    except KeyError:
+        with open ('errorlog.txt', "w") as elog:
+            elog.write('Examined item is not a resource or nothing examined.')
+        
+        return "KeyError", "KeyError"
     
     for k,v in dict1.items():
         if k =='Cold Resistance':

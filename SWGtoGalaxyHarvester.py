@@ -3,6 +3,7 @@ import utils.readscreen as rs
 import utils.parsedata as par 
 import utils.planet_coords as wp  
 import utils.discordposter as discord
+from playsound import playsound
 import keyboard
 import json
 
@@ -35,11 +36,18 @@ while True:
         x,y = wp.get_coords()
         getinfo = rs.get_resource_info()
         _, getinfo = rs.parse_validate_write(getinfo)
-        discord.post_to_discord(wp_planet, x,y, getinfo)
+        if getinfo != 'KeyError':
+            resp = discord.post_to_discord(wp_planet, x,y, getinfo)
+            if resp == 200 or resp == 204:
+                playsound('resources/success1.mp3')
+            else:
+                playsound('resources/fail1.mp3')
+        else:
+            playsound('resources/JarJarClumsy.mp3')
     elif keyboard.read_key()=="'":
-        break
 
+        break
     
-# r = auth.add_resource(login, submit_string)
-# print(r.status_code)
-# print(r.content)
+r = auth.add_resource(login, submit_string)
+print(r.status_code)
+print(r.content)

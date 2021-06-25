@@ -20,11 +20,11 @@ def get_planet():
     return planet_name
 
 def get_coords():
-    x_coord = ImageGrab.grab(bbox=(1751,166,1800,178))
-    y_coord = ImageGrab.grab(bbox=(1864,166,1913,178))
+    x_coord = ImageGrab.grab(bbox=(1751,166,1800,177))
+    y_coord = ImageGrab.grab(bbox=(1864,166,1913,177))
     image_x = np.array(x_coord)
     image_normalized = np.zeros((image_x.shape[0], image_x.shape[1]))
-    image_x = cv2.normalize(image_x, image_normalized, 150, 255, cv2.NORM_MINMAX)
+    image_x = cv2.normalize(image_x, image_normalized, 175, 255, cv2.NORM_MINMAX)
     image_x = cv2.resize(image_x, (400,100))
     image_x = cv2.GaussianBlur(image_x, (1,1), 1)
     image_x = cv2.medianBlur(image_x, 5) 
@@ -37,7 +37,9 @@ def get_coords():
     image_y = cv2.GaussianBlur(image_y, (1,1), 1)
     image_y = cv2.medianBlur(image_y, 5) 
     image_y = cv2.threshold(image_y, 225, 255, cv2.THRESH_BINARY)[1]
-
+    
+    cv2.imshow("",image_x)
+    
     image_x = pytesseract.image_to_string(image_x).replace('\n','').replace("\x0c","")
     image_y = pytesseract.image_to_string(image_y).replace('\n','').replace("\x0c","")
     return (image_x, image_y)
@@ -95,7 +97,8 @@ if __name__=="__main__":
     while True:
         planet_name = get_planet()
         outx, outy = get_coords()
-        # cv2.imshow("",planet_name)
+        print(outx)
+        # cv2.imshow("",outx)
         
         # planet_name = pytesseract.image_to_string(planet_name).replace('\n','').replace("\x0c","")
         # outx = pytesseract.image_to_string(c_x).replace('\n','').replace("\x0c","")

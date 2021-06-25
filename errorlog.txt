@@ -1,0 +1,1 @@
+Examined item is not a resource or nothing examined.
