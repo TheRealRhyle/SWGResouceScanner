@@ -1,4 +1,4 @@
-import re
+
 import cv2
 import numpy as np
 from PIL import ImageGrab
@@ -16,7 +16,8 @@ def get_planet():
     image = cv2.GaussianBlur(image, (1,1), 1)
     image = cv2.medianBlur(image, 5)
     image = cv2.threshold(image, 225, 255, cv2.THRESH_BINARY)[1]
-    return image
+    planet_name = pytesseract.image_to_string(image).replace('\n','').replace("\x0c","")
+    return planet_name
 
 def get_coords():
     x_coord = ImageGrab.grab(bbox=(1751,166,1800,178))
@@ -36,6 +37,9 @@ def get_coords():
     image_y = cv2.GaussianBlur(image_y, (1,1), 1)
     image_y = cv2.medianBlur(image_y, 5) 
     image_y = cv2.threshold(image_y, 225, 255, cv2.THRESH_BINARY)[1]
+
+    image_x = pytesseract.image_to_string(image_x).replace('\n','').replace("\x0c","")
+    image_y = pytesseract.image_to_string(image_y).replace('\n','').replace("\x0c","")
     return (image_x, image_y)
 
 def parse_validate_write(image):
@@ -90,11 +94,12 @@ def parse_validate_write(image):
 if __name__=="__main__":
     while True:
         planet_name = get_planet()
-        c_x, c_y = get_coords()
-        cv2.imshow("",planet_name)
-        planet_name = pytesseract.image_to_string(planet_name).replace('\n','').replace("\x0c","")
-        outx = pytesseract.image_to_string(c_x).replace('\n','').replace("\x0c","")
-        outy = pytesseract.image_to_string(c_y).replace('\n','').replace("\x0c","")
+        outx, outy = get_coords()
+        # cv2.imshow("",planet_name)
+        
+        # planet_name = pytesseract.image_to_string(planet_name).replace('\n','').replace("\x0c","")
+        # outx = pytesseract.image_to_string(c_x).replace('\n','').replace("\x0c","")
+        # outy = pytesseract.image_to_string(c_y).replace('\n','').replace("\x0c","")
         
         if planet_name == "Yavin 4":
             planet_name="yavin4"

@@ -30,9 +30,10 @@ A run-able script that will read resource data from the game screen and parse it
 - [x] ~~Posting to Discord works if provided with an webhook.~~
 - [ ] Need to implement some for of feedback for success/failure to post to GH.
 - [ ] Read chatlog for information and text triggers.
-- C:\SWG Restoration III\profiles\>user name<\Restoration\
+- C:\SWG Restoration III\profiles\\>user name<\Restoration\
 - This does not work as the chat log is only stored on logout, area transition, or turning off the log.
 - [ ] Debug log
+- [ ] Webhook addresses should be passed in if more than one.(discordposter.py)
 
 Phase IV - Create an EXE:
 - [ ] convert python to distributable exe.

@@ -68,7 +68,7 @@ def parse_validate_write(image):
     with open(f'outdata\{resname}.txt', 'w') as fi:
         fi.writelines(text_out)
 
-    return sample
+    return sample, text_out
 
 
 if __name__=="__main__":
