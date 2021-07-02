@@ -1,9 +1,11 @@
+from time import sleep
 import cv2
 import numpy as np
 from PIL import ImageGrab
 import pytesseract
 from datetime import datetime, timedelta
-import utils.parsedata as par
+import parsedata as par
+import auth as a
 import json
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
@@ -42,7 +44,7 @@ def parse_validate_write(image):
         sample = par.Resource(dict1['Resource Type'], dict1['Resource Class'])
     except KeyError:
         with open ('errorlog.txt', "w") as elog:
-            elog.write('Examined item is not a resource or nothing examined.')
+            elog.write('Examined item is not a resource or nothing to examined.')
         
         return "KeyError", "KeyError"
     
@@ -75,19 +77,61 @@ def parse_validate_write(image):
 
     return sample, text_out
 
+def pseudo_isd():
+    # Point(x=336, y=38)
+    # Point(x=813, y=959)
+    image = ImageGrab.grab(bbox=(336,35,813,970))
+    image = np.array(image)
+    image_normalized = np.zeros((image.shape[0], image.shape[1]))
+    image = cv2.normalize(image, image_normalized, 10, 255, cv2.NORM_MINMAX)
+    image = cv2.threshold(image, 100, 255, cv2.THRESH_BINARY)[1]
+    image = cv2.GaussianBlur(image, (1,1), 1)
+    image = cv2.resize(image, (1000,2000))
+    image = cv2.medianBlur(image, 3)
+    return image
 
+def dump_to_file():
+# if __name__ == "__main__":
+    output = []
+    while True:
+        
+        # cap = ImageGrab.grab(bbox=(336,38,813,970))
+        cap = pseudo_isd()
+        # scrape_arr = np.array(cap)
+        cv2.imshow("", cap)
+        
+        resource = pytesseract.image_to_string(cap)
+        res_lines = resource.split('\n')
+
+        # print(len(res_lines))
+        for line in res_lines:
+            if line.split(" ")[0]== "" or len(line.split(" ")) > 1:
+                continue
+            elif line.split(" ")[0] not in output:
+                res_name = line.split(" ")[0]
+                if res_name == '\x0c' or res_name == '\f':
+                    continue
+                exists = a.check_resource(res_name)
+                if exists.split(" ")[1] == "new":
+                    output.append(f'{line.split(" ")[0]} - Not listed on GH')
+            else:
+                continue
+        if cv2.waitKey(1) == 27:
+            break
+    cv2.destroyAllWindows
+    with open("dumpfile.txt", "w") as df:
+        df.writelines('\n'.join(output))
+        # image = get_resource_info()
+        # resource_sample = parse_validate_write(image)
+
+        # sample_json = par.class_to_json(resource_sample)
+        
+        # with open('outdata\sample.json','w') as fi:
+        #     # fi.write(sample_json)
+        #     fi.write(json.dumps(json.loads(sample_json), indent=4, sort_keys=False))
+
+        # auth.verify_resource(sample_json)    
+        
 if __name__=="__main__":
-    image = get_resource_info()
-    resource_sample = parse_validate_write(image)
-
-    sample_json = par.class_to_json(resource_sample)
-    
-    with open('outdata\sample.json','w') as fi:
-        # fi.write(sample_json)
-        fi.write(json.dumps(json.loads(sample_json), indent=4, sort_keys=False))
-
-    # auth.verify_resource(sample_json)    
-    
-
-
+    dump_to_file()
 
