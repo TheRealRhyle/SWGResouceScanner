@@ -32,7 +32,7 @@ def verify_resource(head, sample_json):
     return r
 
 def check_resource(res_name):
-    exsits = False
+    exists = False
     galaxy = 115    
     request = Request(
         'POST',

@@ -34,15 +34,13 @@ while True:
     # ; post to Discord
     if keyboard.read_key() == ".":
         rs.dump_to_file()
+        playsound('resources/success1.mp3')
+    elif keyboard.read_key() == ",":
+        resource_sample, _ = rs.parse_validate_write(rs.get_resource_info())
+        playsound('resources/success1.mp3')
     elif keyboard.read_key()=="'":
         break
     
-    try:
-        resource_sample, _ = rs.parse_validate_write(rs.get_resource_info())
-        time.sleep(.1)
-    except:
-        continue
-
 #     if keyboard.read_key() == ".":
 #         # wp_planet = wp.get_planet()
 #         #  getinfo = rs.get_resource_info()

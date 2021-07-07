@@ -3,7 +3,9 @@ import cv2
 import numpy as np
 from PIL import ImageGrab
 import pytesseract
-from time import sleep
+import pymsgbox
+
+
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
@@ -17,7 +19,11 @@ def get_planet():
     image = cv2.medianBlur(image, 5)
     image = cv2.threshold(image, 225, 255, cv2.THRESH_BINARY)[1]
     planet_name = pytesseract.image_to_string(image).replace('\n','').replace("\x0c","")
-    return planet_name
+    
+    if planet_name != '':
+        return planet_name
+    else:
+        return pymsgbox.prompt("What planet are you surveying?","SWGRREP","")
 
 def get_coords():
     x_coord = ImageGrab.grab(bbox=(1751,166,1800,177))
